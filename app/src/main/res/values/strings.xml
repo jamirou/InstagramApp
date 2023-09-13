@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">InstagramApp</string>
+    <string name="description">Profile Image</string>
 </resources>

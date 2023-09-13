@@ -25,13 +25,14 @@ fun ProfileHeader(
     goBackClick: () -> Unit,
     notificationClick: () -> Unit,
     dropDownClick: () -> Unit,
+    username: String,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        ProfileHeaderName(goBackClick = goBackClick)
+        ProfileHeaderName(goBackClick = goBackClick, username = username)
         ProfileHeaderOptions(notificationClick = notificationClick, dropDownClick = dropDownClick)
     }
 }
@@ -39,7 +40,8 @@ fun ProfileHeader(
 @Composable
 private fun ProfileHeaderName(
     modifier: Modifier = Modifier,
-    goBackClick: () -> Unit
+    goBackClick: () -> Unit,
+    username: String
 ) {
     Row(
         modifier = modifier,
@@ -49,7 +51,7 @@ private fun ProfileHeaderName(
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Go back")
         }
         Spacer(modifier = Modifier.width(16.dp))
-        Text(text = "jam3312_", fontWeight = FontWeight.Bold)
+        Text(text = username, fontWeight = FontWeight.Bold)
     }
 }
 
@@ -76,5 +78,5 @@ private fun ProfileHeaderOptions(
 @Preview(showBackground = true)
 @Composable
 fun ProfileHeaderPreview() {
-    ProfileHeader({}, {}, {})
+    ProfileHeader({}, {}, {}, "jam3312_")
 }
