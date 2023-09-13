@@ -15,12 +15,14 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ProfileButtons(
+    followClick: () -> Unit,
+    messageClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(modifier = modifier.fillMaxWidth()) {
-        ButtonProfile(onClick = { /*TODO*/ }, text = "Following", Modifier.weight(1f))
+        ButtonProfile(onClick = followClick, text = "Following", Modifier.weight(1f))
         Spacer(modifier = Modifier.width(8.dp))
-        ButtonProfile(onClick = { /*TODO*/ }, text = "Message", Modifier.weight(1f))
+        ButtonProfile(onClick = messageClick, text = "Message", Modifier.weight(1f))
     }
 }
 
@@ -43,5 +45,5 @@ private fun ButtonProfile(
 @Preview(showBackground = true)
 @Composable
 fun ProfileButtonsPreview() {
-    ProfileButtons()
+    ProfileButtons({}, {})
 }

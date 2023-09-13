@@ -1,5 +1,7 @@
 package com.jamirodev.instagramapp.profile
 
+import android.content.Context
+import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -9,6 +11,7 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.jamirodev.instagramapp.profile.components.HighLights
@@ -87,11 +90,12 @@ fun ProfileScreen() {
     )
 
     val size = 3
+    val context = LocalContext.current
     Column {
         ProfileHeader(
-            goBackClick = { /*TODO*/ },
-            notificationClick = { /*TODO*/ },
-            dropDownClick = { /*TODO*/ },
+            goBackClick = { showToast(context, "Back button") },
+            notificationClick = { showToast(context, "Notifications") },
+            dropDownClick = { showToast(context, "DropDown") },
             username = user.username
         )
         LazyVerticalGrid(columns = GridCells.Fixed(size)) {
@@ -118,6 +122,8 @@ fun ProfileScreen() {
                 GridItemSpan(size)
             }) {
                 ProfileButtons(
+                    followClick = { showToast(context, "Following") },
+                    messageClick = { showToast(context, "Message") },
                     modifier = Modifier.padding(start = 16.dp, end = 16.dp)
                 )
             }
@@ -126,14 +132,27 @@ fun ProfileScreen() {
             }) {
                 HighLights(
                     stories = user.stories,
-                    modifier = Modifier.padding(start = 15.dp, end = 15.dp, top = 4.dp, bottom = 5.dp)
+                    storyClick = { showToast(context, "HighLight") },
+                    modifier = Modifier.padding(
+                        start = 1.dp,
+                        end = 1.dp,
+                        top = 4.dp,
+                        bottom = 5.dp
+                    )
                 )
             }
             items(user.posts) {
-                ImagePosts(imageUrl = it, modifier = Modifier.padding(1.dp))
+                ImagePosts(
+                    imageUrl = it,
+                    postClicked = {showToast(context, "Post")},
+                    modifier = Modifier.padding(1.dp))
             }
         }
     }
+}
+
+private fun showToast(context: Context, itemClicked: String) {
+    Toast.makeText(context, "$itemClicked pressed", Toast.LENGTH_SHORT).show()
 }
 
 

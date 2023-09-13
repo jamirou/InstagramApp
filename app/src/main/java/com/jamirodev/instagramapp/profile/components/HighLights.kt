@@ -1,5 +1,6 @@
 package com.jamirodev.instagramapp.profile.components
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.size
@@ -20,13 +21,14 @@ import com.jamirodev.instagramapp.profile.Highlight
 
 @Composable
 fun HighLights(
+    storyClick: () -> Unit,
     stories: List<Highlight>,
     modifier: Modifier = Modifier
 ) {
     LazyRow(modifier = modifier) {
         items(stories) {
-            StoryItem(it)
-            Spacer(modifier = Modifier.width(9.dp))
+            StoryItem(it, modifier = modifier.clickable { storyClick() })
+            Spacer(modifier = Modifier.width(3.dp))
         }
     }
 }
