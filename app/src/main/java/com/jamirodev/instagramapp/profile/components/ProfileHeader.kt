@@ -22,26 +22,30 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun ProfileHeader(
+    goBackClick: () -> Unit,
+    notificationClick: () -> Unit,
+    dropDownClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
         horizontalArrangement = Arrangement.SpaceBetween
     ) {
-        ProfileHeaderName()
-        ProfileHeaderOptions()
+        ProfileHeaderName(goBackClick = goBackClick)
+        ProfileHeaderOptions(notificationClick = notificationClick, dropDownClick = dropDownClick)
     }
 }
 
 @Composable
 private fun ProfileHeaderName(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    goBackClick: () -> Unit
 ) {
     Row(
         modifier = modifier,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = goBackClick) {
             Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Go back")
         }
         Spacer(modifier = Modifier.width(16.dp))
@@ -52,16 +56,18 @@ private fun ProfileHeaderName(
 
 @Composable
 private fun ProfileHeaderOptions(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    notificationClick: () -> Unit,
+    dropDownClick: () -> Unit
 ) {
     Row(modifier = modifier) {
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = notificationClick) {
             Icon(
                 imageVector = Icons.Outlined.Notifications,
                 contentDescription = "Notifications"
             )
         }
-        IconButton(onClick = { /*TODO*/ }) {
+        IconButton(onClick = dropDownClick) {
             Icon(imageVector = Icons.Default.MoreVert, contentDescription = "Dropdown")
         }
     }
@@ -70,5 +76,5 @@ private fun ProfileHeaderOptions(
 @Preview(showBackground = true)
 @Composable
 fun ProfileHeaderPreview() {
-    ProfileHeader()
+    ProfileHeader({}, {}, {})
 }
