@@ -1,4 +1,4 @@
-# Clon de Instagram con Kotlin y Jetpack Compose
+# Clon de perfil de Instagram con Kotlin y Jetpack Compose
 
 <img src="https://github.com/jamirou/InstagramApp/assets/48457084/ece82091-f3c0-424d-a729-35537c8fa0d4" width="300" height="600" alt="Screenshot_1694637404">
 
